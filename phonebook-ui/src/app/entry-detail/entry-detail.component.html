@@ -1,0 +1,14 @@
+<div *ngIf="entry" class="products">
+  <h2>{{ entry.name | uppercase }} Details</h2>
+  <div><span>Name: </span>{{ entry.name }}</div>
+  <div><span>Surname: </span>{{ entry.surname }}</div>
+  <div *ngIf="entry.Details" class="products">
+    <div><span>Name: </span>{{ entry.details.description }}</div>
+    <div><span>Surname: </span>{{ entry.details.content }}</div>
+  </div>
+  <div>
+    <button routerLink="/entry-edit/{{ entry._id }}">
+      Edit
+    </button>
+  </div>
+</div>

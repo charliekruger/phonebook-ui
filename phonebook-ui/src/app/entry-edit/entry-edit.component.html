@@ -1,0 +1,24 @@
+<div>
+  <h2>Entry Edit</h2>
+  <div>
+    <label
+      >Product Name:
+      <input [(ngModel)]="entryData.name" placeholder="Name" /> </label
+    ><br />
+    <label
+      >Product Desc:
+      <input [(ngModel)]="entryData.surname" placeholder="Surname" /> </label
+    ><br />
+    <div>
+      <label
+        >Product Details:
+        <input
+          [(ngModel)]="entryData.contactDetails"
+          placeholder="Details"
+        /> </label
+      ><br />
+    </div>
+    <br />
+  </div>
+  <button (click)="updateProduct()">Update</button>
+</div>
