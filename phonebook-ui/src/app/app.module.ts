@@ -19,7 +19,12 @@ const appRoutes: Routes = [
     data: { title: 'Entries List' }
   },
   {
-    path: 'entry-details/:id',
+    path: 'entry-detail/:id',
+    component: EntryDetailComponent,
+    data: { title: 'Entry Details' }
+  },
+  {
+    path: 'entry-detail/:entry',
     component: EntryDetailComponent,
     data: { title: 'Entry Details' }
   },

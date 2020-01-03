@@ -1,4 +1,4 @@
-<h2>Entries List</h2>
+<h2>Phonebook Entries</h2>
 
 <div>
   <button (click)="add()">
@@ -7,11 +7,11 @@
 </div>
 
 <ul class="entries">
-  <li *ngFor="let p of entries; let i=index;">
-    <a routerLink="/product-details/{{p._id}}">
-      <span class="badge">{{i+1}}</span> {{p.name}}
+  <li *ngFor="let e of entries; let i=index;">
+    <a routerLink="/entry-detail/{{e.phonebookEntryId}}">
+    <span class="badge">{{i+1}}</span> {{e.name}} {{e.surname}}
     </a>
     <button class="delete" title="delete product"
-      (click)="delete(p._id)">x</button>
+      (click)="delete(e.phonebookEntryId)">x</button>
   </li>
 </ul>

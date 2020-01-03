@@ -1,24 +1,20 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { RestService } from "../rest.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Component, OnInit, Input } from '@angular/core';
+import { RestService } from '../rest.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: "app-product-add",
-  templateUrl: "./entry-add.component.html",
-  styleUrls: ["./entry-add.component.css"]
+  selector: 'app-product-add',
+  templateUrl: './entry-add.component.html',
+  styleUrls: ['./entry-add.component.css']
 })
 export class EntryAddComponent implements OnInit {
   @Input() entryData = {
-    phonebookEntryId: 0,
-    name: "string",
-    surname: "string",
+    name: '',
+    surname: '',
     contactDetails: [
       {
-        contactDetailId: 0,
-        phonebookEntryId: 0,
-        type: 0,
-        description: "string",
-        content: "string"
+        description: '',
+        content: ''
       }
     ]
   };
@@ -31,10 +27,24 @@ export class EntryAddComponent implements OnInit {
 
   ngOnInit() {}
 
+  addNumber() {
+    this.entryData.contactDetails.push({ description: '', content: '' });
+  }
+
+  removeNumber(item) {
+    // delete this.entryData.contactDetails[item];
+    // this.entryData.contactDetails.reduce(item);
+    const index = this.entryData.contactDetails.indexOf(item, 0);
+    if (index > -1) {
+      this.entryData.contactDetails.splice(index, 1);
+    }
+  }
+
   addEntry() {
+    console.log('data being saved:: ' + this.entryData);
     this.rest.addEntry(this.entryData).subscribe(
       result => {
-        this.router.navigate(["/product-details/" + result._id]);
+        this.router.navigate(['/product-details/' + result.phonebookEntryId]);
       },
       err => {
         console.log(err);

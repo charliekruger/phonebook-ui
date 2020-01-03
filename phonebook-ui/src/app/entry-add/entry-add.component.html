@@ -1,17 +1,39 @@
 <div>
   <h2>Entry Add</h2>
   <div>
-    <label>Product Name:
-      <input [(ngModel)]="entryData.name" placeholder="Name"/>
-    </label><br>
-    <label>Product Desc:
-      <input [(ngModel)]="entryData.surname" placeholder="Surname"/>
-    </label><br>
+    <label
+      >Name:
+      <input [(ngModel)]="entryData.name" placeholder="Name" /> </label
+    ><br />
+    <label
+      >Surname:
+      <input [(ngModel)]="entryData.surname" placeholder="Surname" /> </label
+    ><br />
     <div>
-      <label>Product Details:
-        <input [(ngModel)]="entryData.contactDetails" placeholder="Details"/>
-      </label><br>
-    </div><br>
+      <button class="delete" title="Add Number" (click)="addNumber()">+</button>
+      <ul class="entries">
+        <li *ngFor="let e of entryData.contactDetails; let i = index">
+          <div>
+            <label
+              >Description:
+              <input
+                [(ngModel)]="e.description"
+                placeholder="Description"
+              /> </label><br />
+            <label
+              >Number:
+              <input [(ngModel)]="e.content" placeholder="Number" /> </label><br />
+            <button
+              class="delete"
+              title="delete product"
+              (click)="removeNumber(e)">
+              x
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <br />
   </div>
   <button (click)="addEntry()">Save</button>
 </div>

@@ -16,7 +16,9 @@ export class EntriesComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getEntries();
+  }
 
   getEntries() {
     this.entries = [];
@@ -27,7 +29,7 @@ export class EntriesComponent implements OnInit {
   }
 
   add() {
-    this.router.navigate(['/product-add']);
+    this.router.navigate(['/entry-add']);
   }
 
   delete(id) {
