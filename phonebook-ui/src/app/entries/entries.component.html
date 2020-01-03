@@ -1,13 +1,14 @@
 <h2>Phonebook Entries</h2>
 
 <div>
+  <input [(ngModel)]="searchterm" (keyup)="onKey($event)" placeholder="Search"/>
   <button (click)="add()">
-    Add
+    Add new
   </button>
 </div>
 
 <ul class="entries">
-  <li *ngFor="let e of entries; let i=index;">
+  <li *ngFor="let e of filteredEntries; let i=index;">
     <a routerLink="/entry-detail/{{e.phonebookEntryId}}">
     <span class="badge">{{i+1}}</span> {{e.name}} {{e.surname}}
     </a>
