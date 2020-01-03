@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 @Component({
   selector: "app-product-add",
   templateUrl: "./entry-add.component.html",
-  styleUrls: ["./entry-add.component.css"]
+  styleUrls: ["./entry-add.component.scss"]
 })
 export class EntryAddComponent implements OnInit {
   @Input() entryData = {

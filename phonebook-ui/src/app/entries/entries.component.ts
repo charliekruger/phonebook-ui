@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 @Component({
   selector: "app-entries",
   templateUrl: "./entries.component.html",
-  styleUrls: ["./entries.component.css"]
+  styleUrls: ["./entries.component.scss"]
 })
 export class EntriesComponent implements OnInit {
   searchterm: "";

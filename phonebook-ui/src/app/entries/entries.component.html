@@ -1,18 +1,35 @@
-<h2>Phonebook Entries</h2>
+<!DOCTYPE html>
+<html id="app" lang="en">
+  <h2>Phonebook Entries</h2>
 
-<div>
-  <input [(ngModel)]="searchterm" (keyup)="onKey($event)" placeholder="Search"/>
-  <button (click)="add()">
-    Add new
-  </button>
+<div class="container">
+  <div >
+    <input
+      [(ngModel)]="searchterm"
+      (keyup)="onKey($event)"
+      placeholder="Search"
+      class="entry"
+    />
+    <button (click)="add()" class="btn --spaced">
+      Add new
+    </button>
+  </div>
+
+  <ul class="list">
+    <li class="list-item" *ngFor="let e of filteredEntries; let i = index">
+      <button
+        class="btn"
+        title="delete entry"
+        (click)="delete(e.phonebookEntryId)"
+      >
+        Remove
+      </button>
+
+      <a class="link" routerLink="/entry-detail/{{ e.phonebookEntryId }}">
+        {{ e.name }} {{ e.surname }}
+      </a>
+
+    </li>
+  </ul>
 </div>
-
-<ul class="entries">
-  <li *ngFor="let e of filteredEntries; let i=index;">
-    <a routerLink="/entry-detail/{{e.phonebookEntryId}}">
-    <span class="badge">{{i+1}}</span> {{e.name}} {{e.surname}}
-    </a>
-    <button class="delete" title="delete product"
-      (click)="delete(e.phonebookEntryId)">x</button>
-  </li>
-</ul>
+</html>

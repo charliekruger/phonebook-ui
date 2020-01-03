@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~csstyle/csstyle";
+
+@include component(btn) {
+  border-radius: 5px;
+  display: inline-block;
+  position: relative;
+  padding: 0.5em 1em;
+  color: #1f1f1f;
+  background-color: #eeeeee;
+  transition: background-color 0.2s;
+  font-size: medium;
+
+  &:hover {
+    background-color: darken(#c4c4c4, 10%);
+  }
+
+  @include option(spaced) {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+
+@include component(entry) {
+  border-radius: 5px;
+  height: 20px;
+  margin: 5px;
+  font-size: medium;
+}
+
+@include component(list) {
+  list-style-type: none;
+  margin-top:10px;
+  margin-botton: 10px;
+}
+
+@include component(link) {
+  font-size: medium;
+  color: black;
+  text-decoration: none;
+
+
+  &:visited {
+    color: black;
+  }
+}
+
+@include component(list-item) {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: -40px;
+}
+
+@include component(group) {
+  border-radius: 5px;
+  border-width: 5px;
+  border-color: #292929;
+  background-color: rgb(238, 238, 238);
+  max-width: 200px;
+  padding: 5px;
+}
+
+@include component(container) {
+  border-radius: 5px;
+  border-width: 5px;
+  border-color: #292929;
+  background-color: #f3f3f3;
+  max-width: 300px;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}

@@ -1,39 +1,54 @@
-<div>
-  <h2>Entry Add</h2>
-  <div>
-    <label
-      >Name:
-      <input [(ngModel)]="entryData.name" placeholder="Name" /> </label
-    ><br />
-    <label
-      >Surname:
-      <input [(ngModel)]="entryData.surname" placeholder="Surname" /> </label
-    ><br />
+<!DOCTYPE html>
+<html id="app" lang="en">
+  <h2>Add a new entry</h2>
+  <button routerLink="/entries" class="btn">All entries</button>
+  <div class="container">
     <div>
-      <button class="delete" title="Add Number" (click)="addNumber()">+</button>
-      <ul class="entries">
-        <li *ngFor="let e of entryData.contactDetails; let i = index">
-          <div>
-            <label
-              >Description:
+      <input [(ngModel)]="entryData.name" placeholder="Name" class="entry" />
+      <br />
+
+      <input
+        [(ngModel)]="entryData.surname"
+        placeholder="Surname"
+        class="entry"
+      />
+      <br />
+      <div>
+        <button class="btn" title="Add Number" (click)="addNumber()">
+          Add item
+        </button>
+        <ul class="entries" class="list">
+          <li
+            *ngFor="let e of entryData.contactDetails; let i = index"
+            class="list-item"
+          >
+            <div class="group">
               <input
                 [(ngModel)]="e.description"
                 placeholder="Description"
-              /> </label><br />
-            <label
-              >Number:
-              <input [(ngModel)]="e.content" placeholder="Number" /> </label><br />
-            <button
-              class="delete"
-              title="delete product"
-              (click)="removeNumber(e)">
-              x
-            </button>
-          </div>
-        </li>
-      </ul>
+                class="entry"
+              />
+              <br />
+
+              <input
+                [(ngModel)]="e.content"
+                placeholder="Number"
+                class="entry"
+              />
+              <button
+                class="btn"
+                title="delete product"
+                (click)="removeNumber(e)"
+              >
+                Remove
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <br />
+      <button (click)="addEntry()" class="btn">Save</button>
     </div>
-    <br />
+
   </div>
-  <button (click)="addEntry()">Save</button>
-</div>
+</html>

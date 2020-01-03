@@ -1,29 +1,26 @@
-<div *ngIf="entry" class="products">
-  <h2>{{ entry.name | uppercase }} Details</h2>
-  <div><span>Name: </span>{{ entry.name }}</div>
-  <div><span>Surname: </span>{{ entry.surname }}</div>
-  <div *ngIf="entry.Details" class="products">
-    <div><span>Name: </span>{{ entry.details.description }}</div>
-    <div><span>Surname: </span>{{ entry.details.content }}</div>
+<!DOCTYPE html>
+<html id="app" lang="en">
+  <div *ngIf="entry" class="container">
+    <h2>{{ entry.name }} {{ entry.surname }}</h2>
+    <button routerLink="/entries" class="btn">All entries</button>
+    <ul class="entries" class="list">
+      <li
+        *ngFor="let e of entry.contactDetails; let i = index"
+        class="list-item"
+      >
+        <div>
+          <label>{{ e.description }}</label>
+          <br />
+
+          <label>{{ e.content }}</label>
+          <br />
+        </div>
+      </li>
+    </ul>
+    <div>
+      <button routerLink="/entry-edit/{{ entry.phonebookEntryId }}" class="btn">
+        Edit
+      </button>
+    </div>
   </div>
-  <ul class="entries">
-    <li *ngFor="let e of entry.contactDetails; let i = index">
-      <div>
-        <label
-          >Description:
-          <label>{{e.description}}</label>
-          </label
-        ><br />
-        <label
-          >Number:
-          <label>{{e.content}}</label> </label
-        ><br />
-      </div>
-    </li>
-  </ul>
-  <div>
-    <button routerLink="/entry-edit/{{entry.phonebookEntryId}}">
-      Edit
-    </button>
-  </div>
-</div>
+</html>

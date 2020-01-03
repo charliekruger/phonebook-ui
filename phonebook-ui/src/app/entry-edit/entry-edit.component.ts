@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 @Component({
   selector: "app-entry-edit",
   templateUrl: "./entry-edit.component.html",
-  styleUrls: ["./entry-edit.component.css"]
+  styleUrls: ["./entry-edit.component.scss"]
 })
 export class EntryEditComponent implements OnInit {
   @Input() entryData = {

@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 @Component({
   selector: "app-entry-detail",
   templateUrl: "./entry-detail.component.html",
-  styleUrls: ["./entry-detail.component.css"]
+  styleUrls: ["./entry-detail.component.scss"]
 })
 export class EntryDetailComponent implements OnInit {
   entry: {
