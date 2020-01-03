@@ -8,17 +8,13 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["./entry-edit.component.css"]
 })
 export class EntryEditComponent implements OnInit {
-  @Input() entryData: any = {
-    phonebookEntryId: 0,
-    name: "string",
-    surname: "string",
+  @Input() entryData = {
+    name: "",
+    surname: "",
     contactDetails: [
       {
-        contactDetailId: 0,
-        phonebookEntryId: 0,
-        type: 0,
-        description: "string",
-        content: "string"
+        description: "",
+        content: ""
       }
     ]
   };
@@ -31,23 +27,44 @@ export class EntryEditComponent implements OnInit {
 
   ngOnInit() {
     this.rest
-      .getEntry(this.route.snapshot.params["phonebookEntryId"])
-      .subscribe((data: {}) => {
-        console.log(data);
-        this.entryData = data;
-      });
+      .getEntry(this.route.snapshot.params.id)
+      .subscribe(
+        (data: {
+          name: "";
+          surname: "";
+          contactDetails: [
+            {
+              description: "";
+              content: "";
+            }
+          ];
+        }) => {
+          console.log(data);
+          this.entryData = data;
+        }
+      );
+  }
+
+  addNumber() {
+    this.entryData.contactDetails.push({description: "", content: "" });
+  }
+
+  removeNumber(item) {
+    const index = this.entryData.contactDetails.indexOf(item, 0);
+    if (index > -1) {
+      this.entryData.contactDetails.splice(index, 1);
+    }
   }
 
   updateEntry() {
-    this.rest
-      .updateEntry(this.entryData)
-      .subscribe(
-        result => {
-          this.router.navigate(["/product-details/" + result._id]);
-        },
-        err => {
-          console.log(err);
-        }
-      );
+    console.log(this.entryData);
+    this.rest.updateEntry(this.entryData).subscribe(
+      result => {
+        this.router.navigate(["/entry-detail/" + result.phonebookEntryId]);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 }

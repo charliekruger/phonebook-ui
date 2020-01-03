@@ -8,7 +8,16 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["./entry-detail.component.css"]
 })
 export class EntryDetailComponent implements OnInit {
-  entry: any;
+  entry: {
+    name: "";
+    surname: "";
+    contactDetails: [
+      {
+        description: "";
+        content: "";
+      }
+    ];
+  };
 
   constructor(
     public rest: RestService,
@@ -21,9 +30,20 @@ export class EntryDetailComponent implements OnInit {
     // console.log(data);
     // this.entry = data;
 
-    this.rest.getEntry(this.route.snapshot.params.id).subscribe((data: {}) => {
-      console.log(data);
-      this.entry = data;
-    });
+    this.rest.getEntry(this.route.snapshot.params.id).subscribe(
+      (data: {
+        name: "";
+        surname: "";
+        contactDetails: [
+          {
+            description: "";
+            content: "";
+          }
+        ];
+      }) => {
+        console.log(data);
+        this.entry = data;
+      }
+    );
   }
 }

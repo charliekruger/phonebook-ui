@@ -6,8 +6,23 @@
     <div><span>Name: </span>{{ entry.details.description }}</div>
     <div><span>Surname: </span>{{ entry.details.content }}</div>
   </div>
+  <ul class="entries">
+    <li *ngFor="let e of entry.contactDetails; let i = index">
+      <div>
+        <label
+          >Description:
+          <label>{{e.description}}</label>
+          </label
+        ><br />
+        <label
+          >Number:
+          <label>{{e.content}}</label> </label
+        ><br />
+      </div>
+    </li>
+  </ul>
   <div>
-    <button routerLink="/entry-edit/{{ entry._id }}">
+    <button routerLink="/entry-edit/{{entry.phonebookEntryId}}">
       Edit
     </button>
   </div>

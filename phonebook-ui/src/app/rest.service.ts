@@ -46,20 +46,20 @@ export class RestService {
         this.httpOptions
       )
       .pipe(
-        tap(contact => console.log(`added contact w/ id=${contact.id}`)),
+        tap(contact => console.log(`added contact w/ id=${contact.PhonebookEntryId}`)),
         catchError(this.handleError<any>("addEntry"))
       );
   }
 
   updateEntry(contact): Observable<any> {
     return this.http
-      .put(
+      .put<any>(
         this.endpoint + "contacts",
         JSON.stringify(contact),
         this.httpOptions
       )
       .pipe(
-        tap(_ => console.log(`updated contact id=${contact.PhonebookEntryId}`)),
+        tap(contact => console.log(`updated contact w/ id=${contact.phonebookEntryId}`)),
         catchError(this.handleError<any>("updateEntry"))
       );
   }

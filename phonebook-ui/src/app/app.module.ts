@@ -24,11 +24,6 @@ const appRoutes: Routes = [
     data: { title: 'Entry Details' }
   },
   {
-    path: 'entry-detail/:entry',
-    component: EntryDetailComponent,
-    data: { title: 'Entry Details' }
-  },
-  {
     path: 'entry-add',
     component: EntryAddComponent,
     data: { title: 'Entry Add' }
