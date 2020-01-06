@@ -2,7 +2,6 @@
 <html id="app" lang="en">
   <div *ngIf="entry" class="container">
     <h2>{{ entry.name }} {{ entry.surname }}</h2>
-    <button routerLink="/entries" class="btn">All entries</button>
     <ul class="entries" class="list">
       <li
         *ngFor="let e of entry.contactDetails; let i = index"
