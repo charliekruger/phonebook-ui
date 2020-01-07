@@ -1,4 +1,58 @@
-<!DOCTYPE html>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Edit contact</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <mat-form-field>
+        <input matInput [(ngModel)]="entryData.name" placeholder="Name" class="entry" name="name" required />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="entryData.surname" placeholder="Surname" class="entry" name="surname" />
+      </mat-form-field>
+    </form>
+
+    <mat-list *ngFor="let e of entryData.contactDetails; let i = index">
+      <mat-list-item>
+
+        <div matLine>
+
+          <form>
+            <mat-form-field>
+              <input matInput [(ngModel)]="e.description" placeholder="Description" class="entry" name="description"
+                required />
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="e.content" placeholder="Number" class="entry" name="number" required />
+              <mat-icon matSuffix>phone</mat-icon>
+              <mat-hint>Include area code</mat-hint>
+            </mat-form-field>
+
+            <button mat-icon-button (click)="removeNumber(e)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </form>
+        </div>
+
+      </mat-list-item>
+    </mat-list>
+
+    <mat-card-actions>
+      <button mat-raised-button (click)="addNumber()" color="secondary">
+        Add item
+      </button>
+      <button mat-raised-button (click)="updateEntry()" color="primary">
+        Save
+      </button>
+    </mat-card-actions>
+
+  </mat-card-content>
+</mat-card>
+
+
+
+<!-- <!DOCTYPE html>
 <html id="app" lang="en">
   <div>
     <h2>Edit</h2>
@@ -49,4 +103,4 @@
       <button (click)="updateEntry()" class="btn">Update</button>
     </div>
   </div>
-</html>
+</html> -->

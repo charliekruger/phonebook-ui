@@ -45,7 +45,7 @@ export class EntryAddComponent implements OnInit {
     console.log("data being saved:: " + this.entryData);
     this.rest.addEntry(this.entryData).subscribe(
       result => {
-        this.router.navigate(["/entry-detail/" + result.phonebookEntryId]);
+        this.router.navigate(["/entries"]);
       },
       err => {
         console.log(err);

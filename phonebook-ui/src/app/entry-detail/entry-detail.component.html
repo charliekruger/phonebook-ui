@@ -1,25 +1,28 @@
-<!DOCTYPE html>
-<html id="app" lang="en">
-  <div *ngIf="entry" class="container">
-    <h2>{{ entry.name }} {{ entry.surname }}</h2>
-    <ul class="entries" class="list">
-      <li
-        *ngFor="let e of entry.contactDetails; let i = index"
-        class="list-item"
-      >
-        <div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ entry.name }} {{ entry.surname }}</mat-card-title>
+    <mat-card-subtitle>Contact details</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <mat-nav-list *ngFor="let e of entry.contactDetails; let i = index">
+      <mat-list-item >
+        <form>
+
           <label>{{ e.description }}</label>
           <br />
 
           <label>{{ e.content }}</label>
           <br />
-        </div>
-      </li>
-    </ul>
-    <div>
-      <button routerLink="/entry-edit/{{ entry.phonebookEntryId }}" class="btn">
-        Edit
-      </button>
-    </div>
-  </div>
-</html>
+
+      </form>
+      </mat-list-item>
+    </mat-nav-list>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button routerLink="/entry-edit/{{ entry.phonebookEntryId }}" color="primary">
+      Edit
+    </button>
+  </mat-card-actions>
+</mat-card>

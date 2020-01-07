@@ -1,33 +1,33 @@
-<!DOCTYPE html>
-<html id="app" lang="en">
-<div class="container">
-  <div >
-    <input
-      [(ngModel)]="searchterm"
-      (keyup)="onKey($event)"
-      placeholder="Search"
-      class="entry"
-    />
-    <button (click)="add()" class="btn --spaced">
-      Add new
-    </button>
-  </div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>All contacts</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="main-container">
+      <div>
+        <form>
 
-  <ul class="list">
-    <li class="list-item" *ngFor="let e of filteredEntries; let i = index">
-      <button
-        class="btn"
-        title="delete entry"
-        (click)="delete(e.phonebookEntryId)"
-      >
-        Remove
-      </button>
+          <mat-form-field>
+            <input matInput [(ngModel)]="searchterm" (keyup)="onKey($event)" placeholder="Search" name="search" />
+          </mat-form-field>
 
-      <a class="link" routerLink="/entry-detail/{{ e.phonebookEntryId }}">
-        {{ e.name }} {{ e.surname }}
-      </a>
+        </form>
+        <mat-card-actions>
+          <button mat-raised-button (click)="add()" color="primary">
+            Add new
+          </button>
+        </mat-card-actions>
+      </div>
 
-    </li>
-  </ul>
-</div>
-</html>
+      <mat-nav-list *ngFor="let e of filteredEntries; let i = index">
+        <mat-list-item>
+          <a matLine routerLink="/entry-detail/{{ e.phonebookEntryId }}">{{ e.name }} {{ e.surname }} </a>
+          <button mat-icon-button (click)="showDeleteDialog(e)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-nav-list>
+
+    </div>
+  </mat-card-content>
+</mat-card>
