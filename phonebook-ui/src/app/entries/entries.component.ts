@@ -31,7 +31,9 @@ export class EntriesComponent implements OnInit {
     this.searchterm = event.target.value;
 
     this.filteredEntries = this.entries.filter(it => {
-      return it.name.toLowerCase().includes(this.searchterm.toLowerCase());
+      var fullName = it.name + " " + it.surname;
+
+      return fullName.toLowerCase().includes(this.searchterm.toLowerCase());
     });
   }
 

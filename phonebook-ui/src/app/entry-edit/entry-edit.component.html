@@ -3,21 +3,20 @@
     <mat-card-title>Edit contact</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form>
+    <div>
       <mat-form-field>
         <input matInput [(ngModel)]="entryData.name" placeholder="Name" class="entry" name="name" required />
       </mat-form-field>
       <mat-form-field>
         <input matInput [(ngModel)]="entryData.surname" placeholder="Surname" class="entry" name="surname" />
       </mat-form-field>
-    </form>
+    </div>
 
     <mat-list *ngFor="let e of entryData.contactDetails; let i = index">
       <mat-list-item>
 
         <div matLine>
 
-          <form>
             <mat-form-field>
               <input matInput [(ngModel)]="e.description" placeholder="Description" class="entry" name="description"
                 required />
@@ -26,13 +25,11 @@
             <mat-form-field>
               <input matInput [(ngModel)]="e.content" placeholder="Number" class="entry" name="number" required />
               <mat-icon matSuffix>phone</mat-icon>
-              <mat-hint>Include area code</mat-hint>
             </mat-form-field>
 
             <button mat-icon-button (click)="removeNumber(e)">
               <mat-icon>delete</mat-icon>
             </button>
-          </form>
         </div>
 
       </mat-list-item>
@@ -49,58 +46,3 @@
 
   </mat-card-content>
 </mat-card>
-
-
-
-<!-- <!DOCTYPE html>
-<html id="app" lang="en">
-  <div>
-    <h2>Edit</h2>
-    <div class="container">
-      <input [(ngModel)]="entryData.name" placeholder="Name" class="entry" />
-      <br />
-
-      <input
-        [(ngModel)]="entryData.surname"
-        placeholder="Surname"
-        class="entry"
-      />
-      <br />
-      <div>
-        <button class="btn" title="Add Number" (click)="addNumber()">
-          Add item
-        </button>
-        <ul class="entries" class="list">
-          <li
-            *ngFor="let e of entryData.contactDetails; let i = index"
-            class="list-item"
-          >
-            <div class="group">
-              <input
-                [(ngModel)]="e.description"
-                placeholder="Description"
-                class="entry"
-              />
-              <br />
-
-              <input
-                [(ngModel)]="e.content"
-                placeholder="Number"
-                class="entry"
-              />
-              <button
-                class="btn"
-                title="delete product"
-                (click)="removeNumber(e)"
-              >
-                Remove
-              </button>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <br />
-      <button (click)="updateEntry()" class="btn">Update</button>
-    </div>
-  </div>
-</html> -->
