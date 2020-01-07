@@ -28,7 +28,7 @@
               <mat-icon matSuffix>phone</mat-icon>
             </mat-form-field>
 
-            <button mat-icon-button (click)="removeNumber(e)">
+            <button mat-icon-button (click)="showDeleteDialog(e)">
               <mat-icon>delete</mat-icon>
             </button>
           </div>
@@ -38,11 +38,11 @@
     </mat-list>
 
     <mat-card-actions>
-      <button mat-raised-button (click)="addNumber()" color="secondary">
-        Add item
-      </button>
       <button mat-raised-button (click)="addEntry()" color="primary">
         Save
+      </button>
+      <button mat-raised-button (click)="addNumber()" color="secondary">
+        Add item
       </button>
     </mat-card-actions>
 

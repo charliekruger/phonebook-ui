@@ -6,16 +6,8 @@
   <mat-card-content>
 
     <mat-nav-list *ngFor="let e of entry.contactDetails; let i = index">
-      <mat-list-item >
-        <form>
-
-          <label>{{ e.description }}</label>
-          <br />
-
-          <label>{{ e.content }}</label>
-          <br />
-
-      </form>
+      <mat-list-item>
+        <span>{{ e.description }} - {{ e.content }}</span>
       </mat-list-item>
     </mat-nav-list>
 
