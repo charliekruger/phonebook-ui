@@ -1,15 +1,16 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { RestService } from "../rest.service";
+import { RestService } from "../../../services/rest.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog, MatDialogConfig } from "@angular/material";
-import { ConfirmDialogComponent } from "../confirm-dialog/confirm-dialog.component";
+import { ConfirmDialogComponent } from "../dialogs/confirm-dialog/confirm-dialog.component";
+import { WarningDialogComponent } from "../dialogs/warning-dialog/warning-dialog.component";
 
 @Component({
-  selector: "app-product-add",
-  templateUrl: "./entry-add.component.html",
-  styleUrls: ["./entry-add.component.scss"]
+  selector: "app-entry-edit",
+  templateUrl: "./entry-edit.component.html",
+  styleUrls: ["./entry-edit.component.scss"]
 })
-export class EntryAddComponent implements OnInit {
+export class EntryEditComponent implements OnInit {
   valid: boolean;
 
   @Input() entryData = {
@@ -30,13 +31,26 @@ export class EntryAddComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.rest.getEntry(this.route.snapshot.params.id).subscribe(
+      (data: {
+        name: "";
+        surname: "";
+        contactDetails: [
+          {
+            description: "";
+            content: "";
+          }
+        ];
+      }) => {
+        console.log(data);
+        this.entryData = data;
+      }
+    );
+  }
 
   addNumber() {
-    this.entryData.contactDetails.push({
-      description: "",
-      content: ""
-    });
+    this.entryData.contactDetails.push({ description: "", content: "" });
   }
 
   removeNumber(item) {
@@ -46,16 +60,16 @@ export class EntryAddComponent implements OnInit {
     }
   }
 
-  addEntry() {
+  updateEntry() {
     this.validate();
 
     if (!this.valid) {
-      alert("Please check that all fields have been entered");
+      this.showWarningDialog();
     } else {
-      console.log("data being saved:: " + this.entryData);
-      this.rest.addEntry(this.entryData).subscribe(
+      console.log(this.entryData);
+      this.rest.updateEntry(this.entryData).subscribe(
         result => {
-          this.router.navigate(["/entries"]);
+          this.router.navigate(["/entry-detail/" + result.phonebookEntryId]);
         },
         err => {
           console.log(err);
@@ -105,5 +119,17 @@ export class EntryAddComponent implements OnInit {
         return;
       }
     });
+  }
+
+  showWarningDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      title: "Not completed",
+      description: "Please check that all fields have been completed"
+    };
+
+    const dialogRef = this.dialog.open(WarningDialogComponent, dialogConfig);
   }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { RestService } from "../rest.service";
+import { RestService } from "../../../services/rest.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog, MatDialogConfig } from "@angular/material";
-import { ConfirmDialogComponent } from "../confirm-dialog/confirm-dialog.component";
+import { ConfirmDialogComponent } from "../dialogs/confirm-dialog/confirm-dialog.component";
 
 @Component({
   selector: "app-entries",
@@ -15,12 +15,16 @@ export class EntriesComponent implements OnInit {
   filteredEntries: any = [];
   shouldDelete: boolean = false;
 
+  restService: RestService;
+
   constructor(
     public rest: RestService,
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog
-  ) {}
+  ) {
+    this.restService = rest;
+  }
 
   ngOnInit() {
     this.getEntries();
@@ -39,7 +43,8 @@ export class EntriesComponent implements OnInit {
 
   getEntries() {
     this.entries = [];
-    this.rest.getPhonebookEntries().subscribe((data: {}) => {
+
+    this.restService.getPhonebookEntries().subscribe((data: {}) => {
       console.log(data);
       this.entries = data;
       this.filteredEntries = this.entries;

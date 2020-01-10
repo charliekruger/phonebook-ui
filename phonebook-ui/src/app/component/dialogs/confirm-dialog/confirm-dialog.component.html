@@ -1,0 +1,14 @@
+<mat-card-header>
+  <mat-card-title>{{title}}</mat-card-title>
+</mat-card-header>
+<mat-card-content>
+  <p>{{description}}</p>
+</mat-card-content>
+<mat-card-actions>
+  <button mat-raised-button (click)="yes()" color="primary">
+    Yes
+  </button>
+  <button mat-raised-button (click)="no()" color="secondary">
+    No
+  </button>
+</mat-card-actions>

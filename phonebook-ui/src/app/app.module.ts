@@ -4,18 +4,18 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
-import { EntriesComponent } from "./entries/entries.component";
-import { EntryAddComponent } from "./entry-add/entry-add.component";
-import { EntryDetailComponent } from "./entry-detail/entry-detail.component";
-import { EntryEditComponent } from "./entry-edit/entry-edit.component";
+import { EntriesComponent } from "./component/entries/entries.component";
+import { EntryAddComponent } from "./component/entry-add/entry-add.component";
+import { EntryDetailComponent } from "./component/entry-detail/entry-detail.component";
+import { EntryEditComponent } from "./component/entry-edit/entry-edit.component";
 
 import { RouterModule, Routes } from "@angular/router";
 import { FormsModule } from "@angular/forms";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatDialogModule } from "@angular/material";
-import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.component";
+import { ConfirmDialogComponent } from "./component/dialogs/confirm-dialog/confirm-dialog.component";
 import { ReactiveFormsModule } from "@angular/forms";
-import { MyMaterialModule } from  './material.module';
+import { MyMaterialModule } from "./material.module";
+import { WarningDialogComponent } from "./component/dialogs/warning-dialog/warning-dialog.component";
 
 const appRoutes: Routes = [
   {
@@ -48,7 +48,8 @@ const appRoutes: Routes = [
     EntryAddComponent,
     EntryDetailComponent,
     EntryEditComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    WarningDialogComponent
   ],
   imports: [
     MyMaterialModule,
@@ -57,12 +58,11 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     MatDialogModule,
     ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmDialogComponent]
+  entryComponents: [ConfirmDialogComponent, WarningDialogComponent]
 })
 export class AppModule {}
