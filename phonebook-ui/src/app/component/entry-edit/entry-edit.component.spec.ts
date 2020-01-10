@@ -8,13 +8,16 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 import { ConfirmDialogComponent } from "../dialogs/confirm-dialog/confirm-dialog.component";
 import { WarningDialogComponent } from "../dialogs/warning-dialog/warning-dialog.component";
+import { Observable } from 'rxjs';
 
 describe("EntryEditComponent", () => {
   let component: EntryEditComponent;
   let fixture: ComponentFixture<EntryEditComponent>;
 
   const mockRestService = {
-    close: jasmine.createSpy("getPhonebookEntries")
+    getEntry: jasmine.createSpy("getEntry", () => {
+      return new Observable<any>();
+    })
   };
 
   beforeEach(async(() => {
@@ -24,8 +27,11 @@ describe("EntryEditComponent", () => {
         MyMaterialModule,
         { provide: MyMaterialModule, useValue: {} },
         { provide: FormsModule, useValue: {} },
-        { provide: RestService, useValue: { mockRestService } },
-        { provide: ActivatedRoute, useValue: {} },
+        { provide: RestService, useValue: mockRestService },
+        {
+          provide: ActivatedRoute,
+          useValue: { snapshot: { params: { 'id': "1" } } }
+        },
         { provide: Router, useValue: {} },
         { provide: MatDialog, useValue: {} },
         { provide: MatDialogConfig, useValue: {} },
@@ -43,7 +49,6 @@ describe("EntryEditComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(EntryEditComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it("should create", () => {

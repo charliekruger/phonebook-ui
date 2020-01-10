@@ -4,10 +4,17 @@ import { EntryDetailComponent } from "./entry-detail.component";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { RestService } from "../../../services/rest.service";
+import { Observable } from 'rxjs';
 
 describe("EntryDetailComponent", () => {
   let component: EntryDetailComponent;
   let fixture: ComponentFixture<EntryDetailComponent>;
+
+  const mockRestService = {
+    getEntry: jasmine.createSpy("getEntry", () => {
+      return new Observable<any>();
+    })
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -17,8 +24,11 @@ describe("EntryDetailComponent", () => {
         MyMaterialModule,
         { provide: MyMaterialModule, useValue: {} },
         { provide: FormsModule, useValue: {} },
-        { provide: RestService, useValue: {} },
-        { provide: ActivatedRoute, useValue: {} },
+        { provide: RestService, useValue: mockRestService },
+        {
+          provide: ActivatedRoute,
+          useValue: { snapshot: { params: { 'id': "1" } } }
+        },
         { provide: Router, useValue: {} }
       ],
       declarations: [EntryDetailComponent]
@@ -28,7 +38,6 @@ describe("EntryDetailComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(EntryDetailComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it("should create", () => {

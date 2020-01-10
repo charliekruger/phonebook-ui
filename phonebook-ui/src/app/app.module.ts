@@ -16,6 +16,8 @@ import { ConfirmDialogComponent } from "./component/dialogs/confirm-dialog/confi
 import { ReactiveFormsModule } from "@angular/forms";
 import { MyMaterialModule } from "./material.module";
 import { WarningDialogComponent } from "./component/dialogs/warning-dialog/warning-dialog.component";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 const appRoutes: Routes = [
   {
@@ -52,6 +54,7 @@ const appRoutes: Routes = [
     WarningDialogComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     MyMaterialModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,

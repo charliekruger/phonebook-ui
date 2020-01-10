@@ -6,13 +6,18 @@ import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { ConfirmDialogComponent } from "../dialogs/confirm-dialog/confirm-dialog.component";
 import { RestService } from "../../../services/rest.service";
+import { subscribeOn } from "rxjs/operators";
+import { observable, Observable } from "rxjs";
+import { promise } from "protractor";
 
 describe("EntriesComponent", () => {
   let component: EntriesComponent;
   let fixture: ComponentFixture<EntriesComponent>;
 
   const mockRestService = {
-    getPhonebookEntries: jasmine.createSpy('getPhonebookEntries')
+    getPhonebookEntries: jasmine.createSpy("getPhonebookEntries", () => {
+      return new Observable<any>();
+    })
   };
 
   beforeEach(async(() => {
@@ -32,7 +37,6 @@ describe("EntriesComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(EntriesComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it("should create", () => {

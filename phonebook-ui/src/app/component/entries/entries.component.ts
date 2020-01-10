@@ -44,7 +44,9 @@ export class EntriesComponent implements OnInit {
   getEntries() {
     this.entries = [];
 
-    this.restService.getPhonebookEntries().subscribe((data: {}) => {
+    const getEntriesResult = this.restService.getPhonebookEntries();
+
+    getEntriesResult.subscribe((data: {}) => {
       console.log(data);
       this.entries = data;
       this.filteredEntries = this.entries;
