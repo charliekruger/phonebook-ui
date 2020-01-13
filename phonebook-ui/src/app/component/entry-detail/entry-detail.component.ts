@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RestService } from "../../../services/rest.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { PhonebookEntry } from 'src/app/interfaces/phonebook-entry';
 
 @Component({
   selector: "app-entry-detail",
@@ -8,16 +9,7 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["./entry-detail.component.scss"]
 })
 export class EntryDetailComponent implements OnInit {
-  entry: {
-    name: "";
-    surname: "";
-    contactDetails: [
-      {
-        description: "";
-        content: "";
-      }
-    ];
-  };
+  entry: PhonebookEntry;
 
   constructor(
     public rest: RestService,
@@ -31,16 +23,7 @@ export class EntryDetailComponent implements OnInit {
     // this.entry = data;
 
     this.rest.getEntry(this.route.snapshot.params.id).subscribe(
-      (data: {
-        name: "";
-        surname: "";
-        contactDetails: [
-          {
-            description: "";
-            content: "";
-          }
-        ];
-      }) => {
+      (data: PhonebookEntry) => {
         console.log(data);
         this.entry = data;
       }

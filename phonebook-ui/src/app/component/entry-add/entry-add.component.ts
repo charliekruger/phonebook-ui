@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { ConfirmDialogComponent } from "../dialogs/confirm-dialog/confirm-dialog.component";
 import { WarningDialogComponent } from "../dialogs/warning-dialog/warning-dialog.component";
+import { PhonebookEntryObject } from "../../dto/PhonebookEntryObject";
+import { ContactDetailObject } from "src/app/dto/ContactDetailObject";
 
 @Component({
   selector: "app-product-add",
@@ -13,16 +15,9 @@ import { WarningDialogComponent } from "../dialogs/warning-dialog/warning-dialog
 export class EntryAddComponent implements OnInit {
   valid: boolean;
 
-  @Input() entryData = {
-    name: "",
-    surname: "",
-    contactDetails: [
-      {
-        description: "",
-        content: ""
-      }
-    ]
-  };
+  @Input() entryData = new PhonebookEntryObject("", "", [
+    new ContactDetailObject("", "")
+  ]);
 
   constructor(
     public rest: RestService,
@@ -34,10 +29,7 @@ export class EntryAddComponent implements OnInit {
   ngOnInit() {}
 
   addNumber() {
-    this.entryData.contactDetails.push({
-      description: "",
-      content: ""
-    });
+    this.entryData.contactDetails.push(new ContactDetailObject("", ""));
   }
 
   removeNumber(item) {

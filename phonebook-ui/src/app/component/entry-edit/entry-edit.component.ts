@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { ConfirmDialogComponent } from "../dialogs/confirm-dialog/confirm-dialog.component";
 import { WarningDialogComponent } from "../dialogs/warning-dialog/warning-dialog.component";
+import { PhonebookEntry } from "src/app/interfaces/phonebook-entry";
+import { PhonebookEntryObject } from "src/app/dto/PhonebookEntryObject";
+import { ContactDetailObject } from "src/app/dto/ContactDetailObject";
 
 @Component({
   selector: "app-entry-edit",
@@ -13,16 +16,9 @@ import { WarningDialogComponent } from "../dialogs/warning-dialog/warning-dialog
 export class EntryEditComponent implements OnInit {
   valid: boolean;
 
-  @Input() entryData = {
-    name: "",
-    surname: "",
-    contactDetails: [
-      {
-        description: "",
-        content: ""
-      }
-    ]
-  };
+  @Input() entryData = new PhonebookEntryObject("", "", [
+    new ContactDetailObject("", "")
+  ]);
 
   constructor(
     public rest: RestService,
@@ -32,25 +28,16 @@ export class EntryEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.rest.getEntry(this.route.snapshot.params.id).subscribe(
-      (data: {
-        name: "";
-        surname: "";
-        contactDetails: [
-          {
-            description: "";
-            content: "";
-          }
-        ];
-      }) => {
+    this.rest
+      .getEntry(this.route.snapshot.params.id)
+      .subscribe((data: PhonebookEntry) => {
         console.log(data);
         this.entryData = data;
-      }
-    );
+      });
   }
 
   addNumber() {
-    this.entryData.contactDetails.push({ description: "", content: "" });
+    this.entryData.contactDetails.push(new ContactDetailObject("", ""));
   }
 
   removeNumber(item) {

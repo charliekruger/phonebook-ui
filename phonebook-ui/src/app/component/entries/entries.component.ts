@@ -1,19 +1,20 @@
-import { Component, OnInit } from "@angular/core";
-import { RestService } from "../../../services/rest.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { MatDialog, MatDialogConfig } from "@angular/material";
-import { ConfirmDialogComponent } from "../dialogs/confirm-dialog/confirm-dialog.component";
+import { Component, OnInit } from '@angular/core';
+import { RestService } from '../../../services/rest.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { ConfirmDialogComponent } from '../dialogs/confirm-dialog/confirm-dialog.component';
+import {PhonebookEntry} from '../../interfaces/phonebook-entry'
 
 @Component({
-  selector: "app-entries",
-  templateUrl: "./entries.component.html",
-  styleUrls: ["./entries.component.scss"]
+  selector: 'app-entries',
+  templateUrl: './entries.component.html',
+  styleUrls: ['./entries.component.scss']
 })
 export class EntriesComponent implements OnInit {
-  searchterm: "";
-  entries: any = [];
+  searchterm: string;
+  entries: PhonebookEntry[] = [];
   filteredEntries: any = [];
-  shouldDelete: boolean = false;
+  shouldDelete = false;
 
   restService: RestService;
 
@@ -35,7 +36,7 @@ export class EntriesComponent implements OnInit {
     this.searchterm = event.target.value;
 
     this.filteredEntries = this.entries.filter(it => {
-      var fullName = it.name + " " + it.surname;
+      var fullName = it.name + ' ' + it.surname;
 
       return fullName.toLowerCase().includes(this.searchterm.toLowerCase());
     });
@@ -46,7 +47,7 @@ export class EntriesComponent implements OnInit {
 
     const getEntriesResult = this.restService.getPhonebookEntries();
 
-    getEntriesResult.subscribe((data: {}) => {
+    getEntriesResult.subscribe((data: PhonebookEntry[]) => {
       console.log(data);
       this.entries = data;
       this.filteredEntries = this.entries;
@@ -54,7 +55,7 @@ export class EntriesComponent implements OnInit {
   }
 
   add() {
-    this.router.navigate(["/entry-add"]);
+    this.router.navigate(['/entry-add']);
   }
 
   delete(id) {
@@ -73,13 +74,13 @@ export class EntriesComponent implements OnInit {
 
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
-      title: "Delete Contact",
+      title: 'Delete Contact',
       description:
-        "Are you sure you want to delete " +
+        'Are you sure you want to delete ' +
         entry.name +
-        " " +
+        ' ' +
         entry.surname +
-        "?"
+        '?'
     };
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
